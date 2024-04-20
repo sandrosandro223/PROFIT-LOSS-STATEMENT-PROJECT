@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Form</title>
+    <link rel="stylesheet" type="text/css" href="{%  static 'styles.css' %}">
+
+</head>
+<body>
+    
+    
+    <div class="form-container">
+    <form method="post">
+        <p style="text-align: left; color:red; font-size: 20px;">Profit & Loss Statement:</p>
+        {% csrf_token %}
+        {{ form1.as_p }}
+        
+            
+        {% if Total_Revenue is not None %}
+            <p>Total revenue: {{ Total_Revenue }}</p>
+        {% endif %}
+        {% if Total_Cost_Of_Goods_Sold is not None %}
+            <p>Total Cost of Goods Sold   : {{ Total_Cost_Of_Goods_Sold }}</p>
+        {% endif %}
+        {% if Total_Revenue is not None  and  Total_Cost_Of_Goods_Sold is not None %}
+        <p>Gross profit  : {{ Gross_Profit }}</p>
+        {% endif %}
+        
+
+        {% if Total_Operating_Expenses is not None %}
+        <p>Total Operating Expenses: {{ Total_Operating_Expenses }}</p>
+        <p>Operating Income : {{ Operating_Income }}</p>
+        {% endif %}
+        {% if Total_Non_Operating_Income_Expenses is not None %}
+        <p>Total Non-Operating Income/Expenses: {{ Total_Non_Operating_Income_Expenses }}</p>
+        <p>Net_income_before_taxes: {{ Net_income_before_taxes }}</p>
+        <p>Income Tax: {{ Income_Tax }} %</p>
+        <p>Net Income: {{ Net_Income }}</p>
+        {% endif %}
+        
+        
+        <button type="submit">Calculate</button>
+        
+    </form>
+    </div>
+   
+    </div>
+        </body>
+   
+</html>
